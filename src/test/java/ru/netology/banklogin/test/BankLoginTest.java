@@ -6,6 +6,7 @@ import ru.netology.banklogin.data.SQLHelper;
 import ru.netology.banklogin.page.LoginPage;
 
 import static ru.netology.banklogin.data.SQLHelper.cleanAuthCodes;
+import static ru.netology.banklogin.data.SQLHelper.cleanDataBase;
 
 public class BankLoginTest {
 
@@ -13,26 +14,25 @@ public class BankLoginTest {
 
 
     @AfterEach
-    void tearDown(){
+    void tearDown() {
         cleanAuthCodes();
 
     }
 
     @AfterAll
-    static void tearDownAll(){
+    static void tearDownAll() {
         cleanDataBase();
     }
 
     @BeforeEach
-    void setUp(){
-        loginPage= open("http://localhost:9999", LoginPage.class);
+    void setUp() {
+        loginPage = open("http://localhost:9999", LoginPage.class);
     }
-
 
 
     @Test
     @DisplayName("Should successfully login to dashboard with exist login and password from sut test data")
-    void shouldSuccessfulLogin(){
+    void shouldSuccessfulLogin() {
         var authInfo = DataHelper.getAuthInfoWithTestData();
         var verificationPage = loginPage.validLogin(authInfo);
         verificationPage.verifyVerificationPageVisibility();
@@ -50,17 +50,14 @@ public class BankLoginTest {
 
     @Test
     @DisplayName("Should get error notification if login with exist in base and active user and random verification code")
-    void shouldGetErrorNotificationIfLoginWithExistUserAndRandomVerificationCode(){
+    void shouldGetErrorNotificationIfLoginWithExistUserAndRandomVerificationCode() {
         var authInfo = DataHelper.getAuthInfoWithTestData();
         var verificationPage = loginPage.validLogin(authInfo);
         verificationPage.verifyVerificationPageVisibility();
         var verificationCode = DataHelper.generateRandomVerificationCode();
         verificationPage.verify(verificationCode.getCode());
-        verificationPage.verifyErrorNotofication("Ошибка! Неверно указан код! Попробуйте еще раз.");
+        verificationPage.verifyErrorNotification("Ошибка! Неверно указан код! Попробуйте еще раз.");
     }
-
-
-
 
 
 }

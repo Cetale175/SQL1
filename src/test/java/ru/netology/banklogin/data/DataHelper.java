@@ -11,10 +11,12 @@ public class DataHelper {
     }
 
     public static AuthInfo getAuthInfoWithTestData() {
+
         return new AuthInfo("vasya", "qwerty123");
     }
 
     private static String generateRandomLogin() {
+
         return faker.name().username();
     }
 
@@ -27,7 +29,7 @@ public class DataHelper {
     }
 
     public static VerificationCode generateRandomVerificationCode() {
-        return new VerificationCode(faker.numerif("######"));
+        return new VerificationCode(faker.numerify("######"));
     }
 
 
@@ -40,7 +42,7 @@ public class DataHelper {
     }
 
     @Value
-    public static class Verification {
+    public static class VerificationCode {
         String code;
     }
 

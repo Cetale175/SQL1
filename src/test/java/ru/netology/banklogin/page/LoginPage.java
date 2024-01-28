@@ -9,7 +9,7 @@ public class LoginPage {
     private final selenideElement errorNotification =$("[data-test-id='error-notification'] .notification__content");
 
     public void verificationErrorNotification(String expectedText) {
-        errorNotification.shouldHace(exactText(expectedText)).shouldBe(visible);
+        errorNotification.shouldHave(exactText(expectedText)).shouldBe(visible);
     }
 
     public VerificationPage validLogin(DataHelper.AuthInfo info) {
