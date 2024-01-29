@@ -5,6 +5,7 @@ import ru.netology.banklogin.data.DataHelper;
 import ru.netology.banklogin.data.SQLHelper;
 import ru.netology.banklogin.page.LoginPage;
 
+import static com.codeborne.selenide.Selenide.open;
 import static ru.netology.banklogin.data.SQLHelper.cleanAuthCodes;
 import static ru.netology.banklogin.data.SQLHelper.cleanDataBase;
 
